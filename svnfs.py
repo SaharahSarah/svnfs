@@ -527,10 +527,10 @@ class SvnFS(Fuse, FuseReadOnlyMixin):
         st.st_atime = time
 
         if kind == svn.core.svn_node_dir:
-            st.st_mode = stat.S_IFDIR | 0o555
+            st.st_mode = stat.S_IFDIR | 0o550
             st.st_size = 512
         else:
-            st.st_mode = stat.S_IFREG | 0o444
+            st.st_mode = stat.S_IFREG | 0o440
             st.st_size = svn.fs.file_length(root, path, pool)
 
         return st
@@ -561,7 +561,7 @@ class SvnFS(Fuse, FuseReadOnlyMixin):
         st.st_ctime = time
         st.st_atime = time
 
-        st.st_mode = stat.S_IFDIR | 0o555
+        st.st_mode = stat.S_IFDIR | 0o550
         st.st_size = 512
 
         return st
@@ -585,7 +585,7 @@ class SvnFS(Fuse, FuseReadOnlyMixin):
         st.st_ctime = time
         st.st_atime = time
 
-        st.st_mode = stat.S_IFDIR | 0o555
+        st.st_mode = stat.S_IFDIR | 0o550
         st.st_size = 512
 
         return st
