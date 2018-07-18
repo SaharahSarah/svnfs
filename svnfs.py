@@ -663,9 +663,6 @@ class SvnFS(Fuse, FuseReadOnlyMixin):
 
         pool = svn.core.Pool(get_pool())
 
-        if path == '/':
-            yield fuse.Direntry('head')
-
         for f in  self.__get_files_list(path, pool) + [".", ".."]:
             yield fuse.Direntry(f)
 
