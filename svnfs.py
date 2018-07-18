@@ -443,16 +443,19 @@ class SvnFS(Fuse, FuseReadOnlyMixin):
                 svn.core.svn_path_canonicalize(self.repospath, pool), pool))
 
         if self.revision != 'all':
-            if self.revision == 'head':
-                self.rev = self.svnfs_youngest_rev()
-            else:
-                self.rev = self.revision
             self.file_class = SvnFSSingleRevisionFile
         else:
             self.file_class = SvnFSAllRevisionsFile
         self.file_class.svnfs = self
 
         self.files_cache = FilesCache(self.cache_dir)
+
+    @property
+    def rev(self):
+        if self.revision == 'head':
+            return self.svnfs_youngest_rev()
+        else:
+            return self.revision
 
     def __get_fs_ptr(self):
         # Use thread pool.
