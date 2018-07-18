@@ -721,9 +721,9 @@ def main():
         help="path to subversion reposiotory")
     svnfs.parser.add_option(mountopt="revision", dest="revision", default="all", metavar="REV",
         help="revision specification: 'all', 'HEAD' or number [default: %default]")
-    svnfs.parser.add_option(mountopt="uid", dest="uid", metavar="UID",
+    svnfs.parser.add_option(mountopt="duid", dest="uid", metavar="UID",
         help="run daemon under different user ID")
-    svnfs.parser.add_option(mountopt="gid", dest="gid", metavar="GID",
+    svnfs.parser.add_option(mountopt="dgid", dest="gid", metavar="GID",
         help="run daemon under different group ID")
     svnfs.parser.add_option(mountopt="logfile", dest="logfile", metavar="PATH-TO-LOG-FILE",
         help="output stdout/stderr into file")
