@@ -433,6 +433,8 @@ class SvnFS(Fuse, FuseReadOnlyMixin):
         # Called from main thread before daemonizing.
         assert self.repospath is not None
 
+        self.fs_ptrs = {}
+
         pool = get_pool()
 
         # Try to open repository
@@ -451,8 +453,6 @@ class SvnFS(Fuse, FuseReadOnlyMixin):
         self.file_class.svnfs = self
 
         self.files_cache = FilesCache(self.cache_dir)
-
-        self.fs_ptrs = {}
 
     def __get_fs_ptr(self):
         # Use thread pool.
